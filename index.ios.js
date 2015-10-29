@@ -9,11 +9,10 @@ var {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
   NavigatorIOS
 } = React;
 
-var SearchPage = require('./App/SearchPage')
+var SearchPage = require('./app/SearchPage')
 
 var PropertyFinder = React.createClass({
   render: function() {

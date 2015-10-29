@@ -5,16 +5,23 @@ var {
   AppRegistry,
   StyleSheet,
   Text,
+  TextInput,
   View,
-  NavigatorIOS
+  TouchableHighlight,
+  ActivityIndicatorIOS,
+  Image,
+  Component
 } = React;
 
-var Component = React.createClass({
+var SearchPage = React.createClass({
   render: function() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
+      <View style   = {styles.container}>
+        <Text style = {styles.description}>
+          Search for houses to buy!
+        </Text>
+        <Text style = {styles.description}>
+        	Search by place-name, posecode or search near your location.
         </Text>
       </View> 
     );
@@ -28,8 +35,8 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
+  description: {
+    fontSize: 18,
     textAlign: 'center',
     margin: 10,
   },
@@ -40,4 +47,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = Component;
+module.exports = SearchPage;
