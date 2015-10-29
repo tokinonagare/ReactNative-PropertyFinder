@@ -14,7 +14,15 @@ var {
 } = React;
 
 var SearchPage = React.createClass({
+
+  getInitialState: function() {
+    return {
+      searchString: 'london'
+    };
+  },
+
   render: function() {
+    console.log('SearchPage.render');
     return (
       <View style   = {styles.container}>
         <Text style = {styles.description}>
@@ -26,6 +34,7 @@ var SearchPage = React.createClass({
         <View style = {styles.searchContainer}>
           <TextInput
             style         = {styles.searchInput}
+            value         = {this.state.searchString}
             placeholder   = 'Search via name or postcode'/>
           <TouchableHighlight     
             style         = {styles.searchButton}
