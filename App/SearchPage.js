@@ -38,6 +38,9 @@ var SearchPage = React.createClass({
           underlayColor = 'gray'>
           <Text style   = {styles.searchButtonText}>Location</Text>
         </TouchableHighlight>
+        <Image 
+          style  = {styles.image}
+          source = {require('image!house')}/>
       </View>
     );
   }
@@ -87,6 +90,10 @@ var styles = StyleSheet.create({
     fontSize:   18,
     color:     'white',
     alignSelf: 'center'
+  },
+  image: {
+    width:  217,
+    height: 138
   }
 });
 
