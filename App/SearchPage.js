@@ -22,7 +22,6 @@ var SearchPage = React.createClass({
   },
 
   render: function() {
-    console.log('SearchPage.render');
     return (
       <View style   = {styles.container}>
         <Text style = {styles.description}>
