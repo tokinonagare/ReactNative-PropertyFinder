@@ -13,7 +13,7 @@ var {
   NavigatorIOS
 } = React;
 
-var Component = require('./Component')
+var SearchPage = require('./App/SearchPage')
 
 var PropertyFinder = React.createClass({
   render: function() {
@@ -22,7 +22,7 @@ var PropertyFinder = React.createClass({
         style = {styles.container}
         initialRoute = {{
           title: 'Property Finder',
-          component: Component
+          component: SearchPage
         }}/>
     );
   }
