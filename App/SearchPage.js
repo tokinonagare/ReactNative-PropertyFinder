@@ -52,12 +52,16 @@ var SearchPage = React.createClass({
     this._executeQuery(query);
   },
 
+  onSearchTextChanged: function(event) {
+    this.setState({searchString: event.nativeEvent.text})
+  },
+
   render: function() {
 
     var spinner = this.state.isLoading ?
       (<ActivityIndicatorIOS
-        hidden= 'true'
-        size=   'large'/>) :
+        hidden  = 'true'
+        size    = 'large'/>) :
       (<View/>);
 
     return (
@@ -72,6 +76,7 @@ var SearchPage = React.createClass({
           <TextInput
             style         = {styles.searchInput}
             value         = {this.state.searchString}
+            onChange      = {this.onSearchTextChanged}
             placeholder   = 'Search via name or postcode'/>
           <TouchableHighlight     
             style         = {styles.searchButton}
