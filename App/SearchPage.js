@@ -36,7 +36,8 @@ var SearchPage = React.createClass({
   getInitialState: function() {
     return {
       searchString: 'london',
-      isLoading:    false
+      isLoading:     false,
+      message:      ''
     };
   },
 
@@ -45,11 +46,33 @@ var SearchPage = React.createClass({
     this.setState({
       isLoading: true
     });
+    fetch(query)
+      .then(response => response.json())
+      .then(json     => this._handleResponse(json.response))
+      .catch(error   =>
+        this.setState({
+          isLoading: false,
+          message:  'Something bad happend ' + error
+        }));
+  },
+
+  _handleResponse: function(response) {
+    this.setState({
+      isLoading: false
+    });
+    if (response.application_response_code.substr(0, 1) === '1') {
+      console.log('Properties found:' + response.listings.length);
+    } else {
+      this.setState({message: 'Location not recognized; please try again.'})
+    };
   },
 
   onSearchPressed: function() {
     var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
     this._executeQuery(query);
+    this.setState({
+      message: ''
+    });
   },
 
   onSearchTextChanged: function(event) {
@@ -95,6 +118,8 @@ var SearchPage = React.createClass({
           source = {require('image!house')}/>
 
         {spinner}
+
+        <Text style = {styles.description}>{this.state.message}</Text>
 
       </View>
     );
