@@ -4,13 +4,14 @@ var React = require('react-native');
 var {
   StyleSheet,
   Text,
-  TextInput,
   View,
   TouchableHighlight,
   ListView,
   Image,
   Component
 } = React;
+
+var PropertyDetail = require('./PropertyDetail')
 
 var SearchResults = React.createClass({
 
@@ -23,6 +24,12 @@ var SearchResults = React.createClass({
 
 	rowPressed: function(propertyGuid) {
 		var property = this.props.listings.filter(prop => prop.guid === propertyGuid)[0];
+
+		this.props.navigator.push({
+			title: 		'Detail',
+			component: PropertyDetail,
+			passProps: {property: property}
+		});
 	},
 
 	renderRow: function(rowData, sectionID, rowID) {
