@@ -1,6 +1,7 @@
 'use strict';
 
-var React = require('react-native');
+var React          = require('react-native')
+var PropertyDetail = require('./PropertyDetail')
 var {
   StyleSheet,
   Text,
@@ -9,14 +10,14 @@ var {
   ListView,
   Image,
   Component
-} = React;
+} = React
 
-var PropertyDetail = require('./PropertyDetail')
-
-var SearchResults = React.createClass({
+var SearchResults  = React.createClass({
 
 	getInitialState: function() {
-		var dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid !== r2.guid});
+		var dataSource = new ListView.DataSource({
+										 rowHasChanged: (r1, r2) => r1.guid !== r2.guid
+				});
 		return {
 			dataSource: dataSource.cloneWithRows(this.props.listings)
 		};
@@ -62,7 +63,7 @@ var SearchResults = React.createClass({
 		);
 	},
 
-});
+})
 
 var styles = StyleSheet.create({
 	thumb: {
@@ -92,4 +93,4 @@ var styles = StyleSheet.create({
 	}
 })
 
-module.exports = SearchResults;
+module.exports = SearchResults

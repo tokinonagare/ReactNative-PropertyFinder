@@ -1,8 +1,8 @@
 'use strict';
 
-var React = require('react-native');
+var React         = require('react-native')
+var SearchResults = require('./SearchResults')
 var {
-  AppRegistry,
   StyleSheet,
   Text,
   TextInput,
@@ -10,11 +10,8 @@ var {
   TouchableHighlight,
   ActivityIndicatorIOS,
   Image,
-  NavigatorIOS,
   Component
-} = React;
-
-var SearchResults = require('./SearchResults');
+} = React
 
 function urlForQueryAndPage (key, value, pageNumber) {
   var data = {
@@ -32,7 +29,7 @@ function urlForQueryAndPage (key, value, pageNumber) {
       .join('&');
 
   return 'http://api.nestoria.co.uk/api?' + querystring;
-};
+}
 
 var SearchPage = React.createClass({
 
@@ -75,11 +72,11 @@ var SearchPage = React.createClass({
   },
 
   onSearchPressed: function() {
-    var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
-    this._executeQuery(query);
     this.setState({
       message: ''
     });
+    var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
+    this._executeQuery(query);
   },
 
   onSearchTextChanged: function(event) {
@@ -87,6 +84,9 @@ var SearchPage = React.createClass({
   },
 
   onLocationPressed: function() {
+    this.setState({
+      message: ''
+    });
     navigator.geolocation.getCurrentPosition(
       location => {
         var search = location.coords.latitude + ',' + location.coords.longitude;
@@ -125,7 +125,7 @@ var SearchPage = React.createClass({
             placeholder   = 'Search via name or postcode'/>
           <TouchableHighlight     
             style         = {styles.searchButton}
-            onPress       = {this.onSearchPressed.bind(this)}
+            onPress       = {this.onSearchPressed}
             underlayColor = 'gray'>
             <Text style   = {styles.searchButtonText}>Go</Text>
           </TouchableHighlight>
@@ -147,7 +147,7 @@ var SearchPage = React.createClass({
       </View>
     );
   }
-});
+})
 
 var styles = StyleSheet.create({
   container: {
@@ -198,6 +198,6 @@ var styles = StyleSheet.create({
     width:  217,
     height: 138
   }
-});
+})
 
-module.exports = SearchPage;
+module.exports = SearchPage

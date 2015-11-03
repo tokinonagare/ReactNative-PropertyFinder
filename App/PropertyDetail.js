@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react-native');
+var React = require('react-native')
 var {
   StyleSheet,
   Text,
@@ -9,19 +9,20 @@ var {
   ListView,
   Image,
   Component
-} = React;
+} = React
 
 var PropertyDetail = React.createClass({
 	render: function() {
-		var property = this.props.property;
+		var property   = this.props.property;
 
-		var stats = property.bedroom_number + ' bed' + property.property_type;
+		var stats      = property.bedroom_number + ' bed' + property.property_type;
 		if (property.bathroom_number) {
-			stats += ', ' + property.bathroom_number + ' ' + (property.bathroom_number > 1
-				 ? 'bathrooms' : 'bathroom')
+										 stats += ', ' + 
+										 property.bathroom_number + ' ' + 
+										 (property.bathroom_number > 1 ? 'bathrooms' : 'bathroom')
 		}
 
-		var price = property.price_formatted.split(' ')[0];
+		var price 		 = property.price_formatted.split(' ')[0];
 
 		return (
 			<View    style  = {styles.container}>
@@ -32,12 +33,12 @@ var PropertyDetail = React.createClass({
 					<Text style = {styles.title}>{property.title}</Text>
 					<Text style = {styles.separator}/>
 				</View>
-				<Text style = {styles.description}>{stats}</Text>
-				<Text style = {styles.description}>{property.summary}</Text>
+				<Text   style = {styles.description}>{stats}</Text>
+				<Text   style = {styles.description}>{property.summary}</Text>
 			</View>
 		);
 	}
-});
+})
 
 var styles = StyleSheet.create({
 	container: {
@@ -52,7 +53,7 @@ var styles = StyleSheet.create({
 		color: 	 '#656565'
 	},
 	separator: {
-		height: 1,
+		height: 					1,
 		backgroundColor: '#DDDDDD'
 	},
 	image: {
@@ -72,4 +73,4 @@ var styles = StyleSheet.create({
 	}
 })
 
-module.exports = PropertyDetail;
+module.exports = PropertyDetail

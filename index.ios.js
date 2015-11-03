@@ -4,21 +4,19 @@
  */
 'use strict';
 
-var React = require('react-native');
+var React       = require('react-native')
+var SearchPage  = require('./app/SearchPage')
 var {
   AppRegistry,
   StyleSheet,
-  Text,
   NavigatorIOS
-} = React;
+} = React
 
-var SearchPage = require('./app/SearchPage')
-
-var PropertyFinder = React.createClass({
+var PropertyFinder   = React.createClass({
   render: function() {
     return (
       <NavigatorIOS
-        style = {styles.container}
+        style        = {styles.container}
         initialRoute = {{
           title: 'Property Finder',
           component: SearchPage
@@ -32,6 +30,6 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white'
   }
-});
+})
 
-AppRegistry.registerComponent('PropertyFinder', () => PropertyFinder);
+AppRegistry.registerComponent('PropertyFinder', () => PropertyFinder)
