@@ -41,12 +41,6 @@ var SearchPage = React.createClass({
     };
   },
 
-  isLoadingInitial: function() {
-    return{
-      isLoading: false,
-    };
-  },
-
   _executeQuery: function(query) {
     console.log(query);
     this.setState({
@@ -62,18 +56,26 @@ var SearchPage = React.createClass({
         }));
   },
 
-  _handleResponse: function(response) {
+  isLoadingComplete: function() {
     this.setState({
       isLoading: false
     });
+  },
+
+  _handleResponse: function(response) {
     if (response.application_response_code.substr(0, 1) === '1') {
         this.props.navigator.push({
           title: 'Results',
           component: SearchResults,
           passProps: {listings: response.listings}
         }); 
+        // Prevent onPress request while switch to PropertyDetail page.
+        setTimeout(this.isLoadingComplete, 1000);
         } else {
-          this.setState({message: 'Location not recognized; please try again.'});
+          this.setState({
+            message:  'Location not recognized; please try again.',
+            isLoading: false
+          });
     };
   },
 
