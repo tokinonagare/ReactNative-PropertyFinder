@@ -86,6 +86,21 @@ var SearchPage = React.createClass({
     this.setState({searchString: event.nativeEvent.text})
   },
 
+  onLocationPressed: function() {
+    navigator.geolocation.getCurrentPosition(
+      location => {
+        var search = location.coords.latitude + ',' + location.coords.longitude;
+        this.setState({searchString: search});
+        var query  = urlForQueryAndPage('centre_point', search, 1);
+        this._executeQuery(query);
+      },
+      error => {
+        this.setState({
+          nessage: 'There was a problem with obtaining your location:' + error
+        });
+      });
+  },
+
   render: function() {
 
     var spinner = this.state.isLoading ?
@@ -117,6 +132,7 @@ var SearchPage = React.createClass({
         </View>
         <TouchableHighlight
           style         = {styles.searchButton}
+          onPress       = {this.onLocationPressed}
           underlayColor = 'gray'>
           <Text style   = {styles.searchButtonText}>Location</Text>
         </TouchableHighlight>
