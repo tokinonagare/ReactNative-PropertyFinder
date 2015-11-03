@@ -20,7 +20,7 @@ function urlForQueryAndPage (key, value, pageNumber) {
       encoding:     'json',
       listing_type: 'buy',
       action:       'search_listings',
-      page:         pageNumber
+      page:          pageNumber
   };
   data[key] = value;
 
@@ -38,6 +38,12 @@ var SearchPage = React.createClass({
       searchString: 'london',
       isLoading:     false,
       message:      ''
+    };
+  },
+
+  isLoadingInitial: function() {
+    return{
+      isLoading: false,
     };
   },
 
@@ -61,22 +67,24 @@ var SearchPage = React.createClass({
       isLoading: false
     });
     if (response.application_response_code.substr(0, 1) === '1') {
-      this.props.navigator.push({
-        title: 'Results',
-        component: SearchResults,
-        passProps: {listings: response.listings}
-      });
-    } else {
-      this.setState({message: 'Location not recognized; please try again.'})
+        this.props.navigator.push({
+          title: 'Results',
+          component: SearchResults,
+          passProps: {listings: response.listings}
+        }); 
+        } else {
+          this.setState({message: 'Location not recognized; please try again.'});
     };
   },
 
   onSearchPressed: function() {
-    this.setState({
-      message: ''
-    });
-    var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
-    this._executeQuery(query);
+    if (this.state.isLoading == false) {
+        this.setState({
+          message: ''
+        });
+        var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
+        this._executeQuery(query);
+    };     
   },
 
   onSearchTextChanged: function(event) {

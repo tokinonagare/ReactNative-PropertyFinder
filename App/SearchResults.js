@@ -34,7 +34,7 @@ var SearchResults  = React.createClass({
 	},
 
 	renderRow: function(rowData, sectionID, rowID) {
-		var price = rowData.price_formatted.split(' ')[0];
+		var price         = rowData.price_formatted.split(' ')[0];
 
 		return (
 			<TouchableHighlight 
